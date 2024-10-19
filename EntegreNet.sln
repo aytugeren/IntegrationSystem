@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Data", "EntegreNet.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Domain", "EntegreNet.ProductMicroservice\Product\Product.Domain\Product.Domain\Product.Domain.csproj", "{74DA2260-E0DE-4093-A65F-5CBA79EED8A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.API", "EntegreNet.ProductMicroservice\Product\Product.API\Product.API.csproj", "{735429A7-B10F-45F5-9A5E-D94000E0D6E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.API", "EntegreNet.ProductMicroservice\Product\Product.API\Product.API.csproj", "{735429A7-B10F-45F5-9A5E-D94000E0D6E6}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CA9FD42C-DCB7-49B5-BFAB-41385AC23FCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{735429A7-B10F-45F5-9A5E-D94000E0D6E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{735429A7-B10F-45F5-9A5E-D94000E0D6E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{735429A7-B10F-45F5-9A5E-D94000E0D6E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA9FD42C-DCB7-49B5-BFAB-41385AC23FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA9FD42C-DCB7-49B5-BFAB-41385AC23FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA9FD42C-DCB7-49B5-BFAB-41385AC23FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA9FD42C-DCB7-49B5-BFAB-41385AC23FCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

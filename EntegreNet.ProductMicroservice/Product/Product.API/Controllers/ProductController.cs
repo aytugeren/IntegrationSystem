@@ -18,7 +18,7 @@ namespace Product.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost(Name = "CreateProduct")]
+        [HttpPost("CreateProduct")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<Guid>> CreateProduct([FromBody] CreateProductCommand command)
         {
@@ -26,7 +26,7 @@ namespace Product.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet(Name = "GetAllProducts")]
+        [HttpGet("GetAllProducts")]
         [ProducesResponseType(typeof(IEnumerable<ProductVM>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<ProductVM>>> GetAllProducts()
         {

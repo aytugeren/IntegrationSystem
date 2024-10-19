@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  productdb:
+    image: postgres:latest
+
+  pgadmin:
+    image: dpage/pgadmin4
+
+  product.api:
+    image: ${DOCKER_REGISTRY-}productapi
+    build:
+      context: .
+      dockerfile: EntegreNet.ProductMicroservice/Product/Product.API/Dockerfile
+
+volumes:
+  postgres_data:
+  pgadmin_data:

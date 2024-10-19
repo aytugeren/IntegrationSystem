@@ -17,7 +17,7 @@ namespace Product.Data
         public static IServiceCollection AddDataServices(this IServiceCollection services, IConfiguration configration)
         {
             services.AddDbContext<ProductContext>(options =>
-            options.UseNpgsql(configration.GetConnectionString("DatabaseConnectionString")));
+            options.UseNpgsql(configration.GetConnectionString("DatabaseConnection")));
 
             services.AddScoped(typeof(IRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<IProductRepository, ProductRepository>();
