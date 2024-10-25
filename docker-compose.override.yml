@@ -25,9 +25,7 @@ services:
         - pgadmin_data:/root/.pgadmin
 
   product.api:
-    image: product-service-image
-    depends_on:
-      - productdb
+    container_name: productapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=Server=172.22.0.3;Port=5432;Database=ProductDb;User Id=admin;Password=admin1234;"
