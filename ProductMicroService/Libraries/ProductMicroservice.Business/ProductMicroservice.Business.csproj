@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProductMicroservice.Data\ProductMicroservice.Data.csproj" />
+    <ProjectReference Include="..\ProductMicroservice.Entities\ProductMicroservice.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
