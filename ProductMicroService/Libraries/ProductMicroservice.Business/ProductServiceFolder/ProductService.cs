@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using ProductMicroservice.Business.DTOFolder;
 using ProductMicroservice.Business.DTOFolder.RequestDTOs;
 using ProductMicroservice.Data.Repositories.UnitOfWork;
@@ -32,24 +33,50 @@ namespace ProductMicroservice.Business.ProductServiceFolder
             return result;
         }
 
-        public Task<bool> DeleteProduct(Guid id)
+        public async Task<bool> DeleteProduct(Guid id)
         {
-            throw new NotImplementedException();
+            var product = await _unitOfWork.Products.GetByIdAsync(id);
+
+            if (product != null)
+            {
+                var result = await _unitOfWork.Products.DeleteAsync(id);
+
+                return result;
+            }
+
+            return false;
         }
 
-        public Task<List<ProductDTO>> GetAllProducts()
+        public async Task<List<ProductDTO>> GetAllProducts()
         {
-            throw new NotImplementedException();
+            var products = await _unitOfWork.Products.GetAllAsync();
+
+            return _mapper.Map<List<ProductDTO>>(products);
         }
 
-        public Task<ProductDTO> GetProductById(Guid id)
+        public async Task<ProductDTO> GetProductById(Guid id)
         {
-            throw new NotImplementedException();
+            var product = await _unitOfWork.Products.GetByIdAsync(id);
+
+            return _mapper.Map<ProductDTO>(product);
         }
 
-        public Task<bool> UpdateProduct(AddProductDTO productDTO)
+        public async Task<bool> UpdateProduct(UpdateProductDTO productDTO)
         {
-            throw new NotImplementedException();
+            var product = await _unitOfWork.Products.Query(x => x.Id == productDTO.Id).FirstOrDefaultAsync();
+
+            if (product != null)
+            {
+                product.ProductName = productDTO.ProductName;
+                product.ProductMainCode = productDTO.ProductMainCode;
+                product.BrandId = productDTO.BrandId;
+                product.VatRate = productDTO.VatRate;
+
+                var result = await _unitOfWork.Products.UpdateAsync(product);
+                return result;
+            }
+
+            return false;
         }
     }
 }

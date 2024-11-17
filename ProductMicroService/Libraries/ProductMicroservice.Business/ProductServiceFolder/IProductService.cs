@@ -18,6 +18,6 @@ namespace ProductMicroservice.Business.ProductServiceFolder
 
         Task<bool> DeleteProduct(Guid id);
 
-        Task<bool> UpdateProduct(AddProductDTO productDTO);
+        Task<bool> UpdateProduct(UpdateProductDTO productDTO);
     }
 }

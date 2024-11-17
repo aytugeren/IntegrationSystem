@@ -1,9 +1,4 @@
 ﻿using ProductMicroservice.Entities.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductMicroservice.Data.Repositories.UnitOfWork
 {
@@ -21,15 +16,7 @@ namespace ProductMicroservice.Data.Repositories.UnitOfWork
         public IRepository<ProductVariantPicture> ProductVariantPictures => new Repository<ProductVariantPicture>(_context);
         public IRepository<ProductVariant> ProductVariants => new Repository<ProductVariant>(_context);
         public IRepository<ProductSize> ProductSizes => new Repository<ProductSize>(_context);
-
-        public IRepository<ProductSizeRegion> ProductSizeRegion => new Repository<ProductSizeRegion>(_context);
-
-        // Diğer entity'ler için repository implementasyonları
-
-        public async Task<int> SaveChangesAsync()
-        {
-            return await _context.SaveChangesAsync();
-        }
+        public IRepository<ProductSizeRegion> ProductSizeRegions => new Repository<ProductSizeRegion>(_context);
 
         public void Dispose()
         {

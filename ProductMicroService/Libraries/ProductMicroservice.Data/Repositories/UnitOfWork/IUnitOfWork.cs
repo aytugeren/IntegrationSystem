@@ -1,4 +1,5 @@
-﻿using ProductMicroservice.Entities.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductMicroservice.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,9 @@ namespace ProductMicroservice.Data.Repositories.UnitOfWork
     {
         IRepository<Product> Products { get; }
         IRepository<Picture> Pictures { get; }
-        // Diğer entity'ler için repository tanımları
-        Task<int> SaveChangesAsync();
+        IRepository<ProductVariantPicture> ProductVariantPictures { get; }
+        IRepository<ProductVariant> ProductVariants { get; }
+        IRepository<ProductSize> ProductSizes { get; }
+        IRepository<ProductSizeRegion> ProductSizeRegions { get; }
     }
-
 }
