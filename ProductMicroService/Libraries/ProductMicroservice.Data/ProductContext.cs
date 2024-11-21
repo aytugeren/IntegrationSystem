@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductMicroservice.Data.Mapping;
 using ProductMicroservice.Entities.Entities;
 
 namespace ProductMicroservice.Data
@@ -21,6 +22,12 @@ namespace ProductMicroservice.Data
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			modelBuilder.ApplyConfiguration(new ProductMapping());
+			modelBuilder.ApplyConfiguration(new ProductVariantMapping());
+			modelBuilder.ApplyConfiguration(new ProductSizeMapping());
+			modelBuilder.ApplyConfiguration(new ProductSizeRegionMapping());
+			modelBuilder.ApplyConfiguration(new PictureMapping());
+			modelBuilder.ApplyConfiguration(new ProductVariantPictureMapping());
 		}
 	}
 }
