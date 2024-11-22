@@ -15,6 +15,7 @@ namespace ProductMicroservice.Data.Mapping
 		{
 			builder.ToTable("tblProductVariantPicture");
 
+			builder.HasKey(x => new { x.ProductVariantId, x.PictureId });
 			builder.HasOne(x => x.Picture)
 				.WithMany(x => x.ProductVariantPictures)
 				.HasForeignKey(x => x.PictureId)
