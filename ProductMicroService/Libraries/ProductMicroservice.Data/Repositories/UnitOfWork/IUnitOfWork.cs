@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ProductMicroservice.Entities.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProductMicroservice.Entities.Entities;
 
 namespace ProductMicroservice.Data.Repositories.UnitOfWork
 {

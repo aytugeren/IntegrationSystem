@@ -1,17 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductMicroservice.Data.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly ProductContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly ProductContext _context;
+        DbSet<T> _dbSet;
 
         public Repository(ProductContext context)
         {

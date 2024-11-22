@@ -1,10 +1,5 @@
 ﻿using ProductMicroservice.Business.DTOFolder;
 using ProductMicroservice.Business.DTOFolder.RequestDTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductMicroservice.Business.ProductServiceFolder
 {

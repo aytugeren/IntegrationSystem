@@ -4,18 +4,13 @@ using ProductMicroservice.Business.DTOFolder;
 using ProductMicroservice.Business.DTOFolder.RequestDTOs;
 using ProductMicroservice.Data.Repositories.UnitOfWork;
 using ProductMicroservice.Entities.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductMicroservice.Business.ProductServiceFolder
 {
     public class ProductService : IProductService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        private IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
 
         public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
         {
