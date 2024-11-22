@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ProductMicroservice.Data\ProductMicroservice.Data.csproj" />
     <ProjectReference Include="..\ProductMicroservice.Entities\ProductMicroservice.Entities.csproj" />
   </ItemGroup>

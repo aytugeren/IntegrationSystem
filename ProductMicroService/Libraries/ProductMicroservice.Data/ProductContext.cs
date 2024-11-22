@@ -25,9 +25,9 @@ namespace ProductMicroservice.Data
 			modelBuilder.ApplyConfiguration(new ProductMapping());
 			modelBuilder.ApplyConfiguration(new ProductVariantMapping());
 			modelBuilder.ApplyConfiguration(new ProductSizeMapping());
+			modelBuilder.ApplyConfiguration(new ProductVariantPictureMapping());
 			modelBuilder.ApplyConfiguration(new ProductSizeRegionMapping());
 			modelBuilder.ApplyConfiguration(new PictureMapping());
-			modelBuilder.ApplyConfiguration(new ProductVariantPictureMapping());
 		}
 	}
 }

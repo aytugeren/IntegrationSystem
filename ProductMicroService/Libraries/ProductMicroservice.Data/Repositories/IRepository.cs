@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ProductMicroservice.Data.Repositories
 {
-	public interface IRepository<T> where T : class
-	{
-		Task<T> GetByIdAsync(int id);
-		Task<IEnumerable<T>> GetAllAsync();
-		Task AddAsync(T entity);
-		Task UpdateAsync(T entity);
-		Task DeleteAsync(int id);
-		Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
-	}
+    public interface IRepository<T> where T : class
+    {
+        Task<T> GetByIdAsync(Guid id);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<bool> AddAsync(T entity);
+        Task<bool> UpdateAsync(T entity);
+        Task<bool> DeleteAsync(Guid id);
+        IQueryable<T> Query(Expression<Func<T, bool>> predicate);
+    }
 }
