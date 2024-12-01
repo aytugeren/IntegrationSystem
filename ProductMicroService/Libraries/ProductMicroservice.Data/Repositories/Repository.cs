@@ -19,7 +19,7 @@ namespace ProductMicroservice.Data.Repositories
             return await _dbSet.FindAsync(id);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+		public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
         }
@@ -72,9 +72,44 @@ namespace ProductMicroservice.Data.Repositories
             }
         }
 
-        public IQueryable<T> Query(Expression<Func<T, bool>> predicate)
+        public async Task<List<T>> Query(Expression<Func<T, bool>> predicate)
         {
-            return _dbSet.Where(predicate);
+            return await _dbSet.Where(predicate).ToListAsync();
+        }
+
+        public async Task<bool> BulkAddAsync(List<T> entities)
+        {
+            try
+            {
+				await _dbSet.AddRangeAsync(entities);
+				await _context.SaveChangesAsync();
+
+                return true;
+			}
+            catch (Exception)
+            {
+                return false;
+            }
+		}
+
+        public async Task<bool> BulkDeleteAsync(List<T> entities)
+        {
+            try
+            {
+                if (entities != null)
+                {
+                    _dbSet.RemoveRange(entities);
+                    await _context.SaveChangesAsync();
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

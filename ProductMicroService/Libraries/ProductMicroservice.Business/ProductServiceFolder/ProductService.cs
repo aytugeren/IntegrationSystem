@@ -73,5 +73,21 @@ namespace ProductMicroservice.Business.ProductServiceFolder
 
             return false;
         }
+
+        public async Task<bool> BulkAddProducts(List<AddProductDTO> products)
+        {
+            var productModel = _mapper.Map<List<ProductDTO>>(products);
+            var product = _mapper.Map<List<Product>>(productModel);
+
+            var result = await _unitOfWork.Products.BulkAddAsync(product);
+            return result;
+        }
+
+        public async Task<bool> BulkDeleteProducts(List<Guid> ids)
+        {
+            var products = await _unitOfWork.Products.Query(x => x.Id != null && ids.Contains(x.Id.Value));
+            var deleteResult = await _unitOfWork.Products.BulkDeleteAsync(products);
+            return deleteResult;
+        }
     }
 }

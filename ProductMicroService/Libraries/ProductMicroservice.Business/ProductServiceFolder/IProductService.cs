@@ -14,5 +14,9 @@ namespace ProductMicroservice.Business.ProductServiceFolder
         Task<bool> DeleteProduct(Guid id);
 
         Task<bool> UpdateProduct(UpdateProductDTO productDTO);
-    }
+
+        Task<bool> BulkAddProducts(List<AddProductDTO> products);
+
+        Task<bool> BulkDeleteProducts(List<Guid> ids);
+	}
 }

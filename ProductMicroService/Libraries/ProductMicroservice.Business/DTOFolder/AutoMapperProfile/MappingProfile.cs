@@ -15,7 +15,8 @@ namespace ProductMicroservice.Business.DTOFolder.AutoMapperProfile
             CreateMap<ProductVariantPicture, ProductVariantPictureDTO>().ReverseMap();
             CreateMap<ProductSizeRegion, ProductVariantSizeRegionDTO>().ReverseMap();
             CreateMap<AddProductDTO, ProductDTO>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()))
+                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(_ => true));
         }
     }
 }

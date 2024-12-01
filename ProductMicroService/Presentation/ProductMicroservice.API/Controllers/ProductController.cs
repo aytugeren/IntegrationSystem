@@ -16,17 +16,38 @@ namespace ProductMicroservice.API.Controllers
 			_productService = productService;
 		}
 
-		[HttpPost(Name = "AddProduct")]
+		[HttpPost("AddProduct")]
 		public async Task<bool> AddProduct(AddProductDTO model)
 		{
 			var result = await _productService.AddProduct(model);
 			return result;
 		}
 
-		[HttpGet(Name = "GetAllProduct")]
+		[HttpGet("GetAllProduct")]
 		public async Task<List<ProductDTO>> GetAllProducts()
 		{
 			var result = await _productService.GetAllProducts();
+			return result;
+		}
+
+		[HttpDelete("DeleteProduct")]
+		public async Task<bool> DeleteProduct(Guid id)
+		{
+			var result = await _productService.DeleteProduct(id);
+			return result;
+		}
+
+		[HttpPost("BulkAddProducts")]
+		public async Task<bool> BulkAddProducts(List<AddProductDTO> products)
+		{
+			var result = await _productService.BulkAddProducts(products);
+			return result;
+		}
+
+		[HttpDelete("BulkDeleteProducts")]
+		public async Task<bool> BulkDeleteProducts(List<Guid> ids)
+		{
+			var result = await _productService.BulkDeleteProducts(ids);
 			return result;
 		}
 	}
