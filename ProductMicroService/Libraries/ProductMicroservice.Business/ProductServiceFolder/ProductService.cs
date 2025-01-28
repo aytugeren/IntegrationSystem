@@ -58,7 +58,8 @@ namespace ProductMicroservice.Business.ProductServiceFolder
 
         public async Task<bool> UpdateProduct(UpdateProductDTO productDTO)
         {
-            var product = await _unitOfWork.Products.Query(x => x.Id == productDTO.Id).FirstOrDefaultAsync();
+            var allProducts = await _unitOfWork.Products.Query(x => x.Id == productDTO.Id);
+            var product = allProducts.FirstOrDefault();
 
             if (product != null)
             {

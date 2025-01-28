@@ -50,5 +50,12 @@ namespace ProductMicroservice.API.Controllers
 			var result = await _productService.BulkDeleteProducts(ids);
 			return result;
 		}
+
+		[HttpPut("UpdateProduct")]
+		public async Task<bool> UpdateProduct(UpdateProductDTO product)
+		{
+			var result = await _productService.UpdateProduct(product);
+			return result;
+		}
 	}
 }

@@ -2,6 +2,7 @@
 using Microsoft.OpenApi.Models;
 using ProductMicroservice.Business.DTOFolder.AutoMapperProfile;
 using ProductMicroservice.Business.ProductServiceFolder;
+using ProductMicroservice.Business.ProductVariantServiceFolder;
 using ProductMicroservice.Data;
 using ProductMicroservice.Data.Repositories;
 using ProductMicroservice.Data.Repositories.UnitOfWork;
@@ -27,6 +28,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductVariantService, ProductVariantService>();
 builder.Services.AddDbContext<ProductContext>(options =>
 	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 

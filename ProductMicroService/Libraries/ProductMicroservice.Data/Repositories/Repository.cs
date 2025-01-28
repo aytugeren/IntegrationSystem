@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductMicroservice.Helper.DBHelper;
 using System.Linq.Expressions;
 
 namespace ProductMicroservice.Data.Repositories
@@ -21,7 +22,8 @@ namespace ProductMicroservice.Data.Repositories
 
 		public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await _dbSet.ToListAsync();
+            var query = _dbSet.IncludeAll(_context);
+            return await query.ToListAsync();
         }
 
         public async Task<bool> AddAsync(T entity)

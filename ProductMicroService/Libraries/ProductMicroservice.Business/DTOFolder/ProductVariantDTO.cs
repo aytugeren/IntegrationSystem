@@ -1,4 +1,6 @@
 ﻿
+using System.Text.Json.Serialization;
+
 namespace ProductMicroservice.Business.DTOFolder
 {
     public class ProductVariantDTO : BaseEntityDTO
@@ -16,8 +18,6 @@ namespace ProductMicroservice.Business.DTOFolder
         public Guid DeliveryDuration { get; set; }
 
         public string DeliveryOption { get; set; }
-
-        public ProductDTO Product { get; set; }
 
         public ICollection<ProductSizeDTO> ProductSizes { get; set; }
 

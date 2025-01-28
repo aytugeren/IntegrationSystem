@@ -1,4 +1,5 @@
 ﻿using ProductMicroservice.Entities.Base;
+using System.Text.Json.Serialization;
 
 namespace ProductMicroservice.Entities.Entities
 {
@@ -18,6 +19,7 @@ namespace ProductMicroservice.Entities.Entities
 
         public string DeliveryOption { get; set; }
 
+        [JsonIgnore] // Döngüsel referansı önlemek için
         public Product Product { get; set; }
 
         public ICollection<ProductSize> ProductSizes { get; set; }

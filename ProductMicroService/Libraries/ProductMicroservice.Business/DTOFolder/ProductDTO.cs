@@ -12,6 +12,6 @@
 
         public string ProductMainCode { get; set; }
 
-        public ICollection<ProductVariantDTO> ProductVariants { get; set; }
+        public virtual ICollection<ProductVariantDTO> ProductVariants { get; set; }
     }
 }

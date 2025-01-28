@@ -11,7 +11,6 @@ namespace ProductMicroservice.Data.Repositories
         Task<bool> UpdateAsync(T entity);
         Task<bool> DeleteAsync(Guid id);
         Task<bool> BulkDeleteAsync(List<T> ids);
-        Task<IEnumerable<T>> GetBulkDataByIdAsync(List<Guid> id);
         Task<List<T>> Query(Expression<Func<T, bool>> predicate);
     }
 }

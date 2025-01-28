@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductMicroservice.API", "ProductMicroService\Presentation\ProductMicroservice.API\ProductMicroservice.API.csproj", "{74F7ED6B-4D95-4F02-805C-4C1ADB0687D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductMicroservice.Helper", "Libraries\ProductMicroservice.Helper\ProductMicroservice.Helper.csproj", "{CBB8B542-87BF-489F-8F9F-3335CC2E358B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{74F7ED6B-4D95-4F02-805C-4C1ADB0687D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74F7ED6B-4D95-4F02-805C-4C1ADB0687D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74F7ED6B-4D95-4F02-805C-4C1ADB0687D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB8B542-87BF-489F-8F9F-3335CC2E358B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB8B542-87BF-489F-8F9F-3335CC2E358B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB8B542-87BF-489F-8F9F-3335CC2E358B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB8B542-87BF-489F-8F9F-3335CC2E358B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{B50C5B9C-2587-4AA9-A709-1923EF6FFC44} = {F4F1B61C-C9AB-462D-9189-951D44220368}
 		{10866484-B452-4E5D-B782-F5DBCCD46A35} = {812F333B-017C-453F-9668-6D56E964302E}
 		{74F7ED6B-4D95-4F02-805C-4C1ADB0687D1} = {10866484-B452-4E5D-B782-F5DBCCD46A35}
+		{CBB8B542-87BF-489F-8F9F-3335CC2E358B} = {F4F1B61C-C9AB-462D-9189-951D44220368}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4F0D750B-E9F2-4599-B018-FF9634A80B05}

@@ -14,6 +14,6 @@ namespace ProductMicroservice.Entities.Entities
 
         public string ProductMainCode { get; set; }
 
-        public ICollection<ProductVariant> ProductVariants { get; set; }
+        public virtual ICollection<ProductVariant> ProductVariants { get; set; }
     }
 }
