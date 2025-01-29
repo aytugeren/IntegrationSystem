@@ -16,7 +16,7 @@ namespace ProductMicroservice.API.Controllers
 			_productVariantService = productVariantService;
 		}
 
-		[HttpPost("AddProduct")]
+		[HttpPost("AddProductVariant")]
 		public async Task<bool> AddProductVariant(AddProductVariantDTO productVariantDTO)
 		{
 			var result = await _productVariantService.AddProductVariant(productVariantDTO);

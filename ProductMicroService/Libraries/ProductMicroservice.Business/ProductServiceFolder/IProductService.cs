@@ -1,5 +1,6 @@
 ﻿using ProductMicroservice.Business.DTOFolder;
 using ProductMicroservice.Business.DTOFolder.RequestDTOs;
+using ProductMicroservice.Business.DTOFolder.RequestDTOs.PictureDTOs;
 
 namespace ProductMicroservice.Business.ProductServiceFolder
 {
