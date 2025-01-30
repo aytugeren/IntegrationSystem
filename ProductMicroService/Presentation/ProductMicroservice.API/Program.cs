@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ProductMicroservice.Business.DTOFolder.AutoMapperProfile;
+using ProductMicroservice.Business.PictureServiceFolder;
 using ProductMicroservice.Business.ProductServiceFolder;
 using ProductMicroservice.Business.ProductVariantServiceFolder;
 using ProductMicroservice.Data;
 using ProductMicroservice.Data.Repositories;
 using ProductMicroservice.Data.Repositories.UnitOfWork;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +29,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductVariantService, ProductVariantService>();
+builder.Services.AddScoped<IPictureService, PictureService>();
 builder.Services.AddDbContext<ProductContext>(options =>
 	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
