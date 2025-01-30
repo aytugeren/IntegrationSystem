@@ -1,7 +1,4 @@
-﻿
-using System.Text.Json.Serialization;
-
-namespace ProductMicroservice.Business.DTOFolder
+﻿namespace ProductMicroservice.Business.DTOFolder
 {
     public class ProductVariantDTO : BaseEntityDTO
     {

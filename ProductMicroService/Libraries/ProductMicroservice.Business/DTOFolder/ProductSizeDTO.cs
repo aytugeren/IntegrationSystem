@@ -1,4 +1,6 @@
-﻿namespace ProductMicroservice.Business.DTOFolder
+﻿using System.Text.Json.Serialization;
+
+namespace ProductMicroservice.Business.DTOFolder
 {
     public class ProductSizeDTO : BaseEntityDTO
     {

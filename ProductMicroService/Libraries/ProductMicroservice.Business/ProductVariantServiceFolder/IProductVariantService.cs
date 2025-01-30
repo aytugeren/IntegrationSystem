@@ -1,5 +1,4 @@
-﻿using ProductMicroservice.Business.DTOFolder.RequestDTOs;
-using ProductMicroservice.Business.DTOFolder;
+﻿using ProductMicroservice.Business.DTOFolder;
 using ProductMicroservice.Business.DTOFolder.RequestDTOs.ProductVariantDTOs;
 
 namespace ProductMicroservice.Business.ProductVariantServiceFolder
