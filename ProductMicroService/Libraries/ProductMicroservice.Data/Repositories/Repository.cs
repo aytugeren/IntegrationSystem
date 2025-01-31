@@ -34,7 +34,7 @@ namespace ProductMicroservice.Data.Repositories
                 await _context.SaveChangesAsync();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

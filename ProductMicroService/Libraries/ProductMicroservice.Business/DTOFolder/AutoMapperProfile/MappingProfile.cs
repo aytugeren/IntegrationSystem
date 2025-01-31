@@ -2,6 +2,7 @@
 using ProductMicroservice.Business.DTOFolder.RequestDTOs;
 using ProductMicroservice.Business.DTOFolder.RequestDTOs.PictureDTOs;
 using ProductMicroservice.Business.DTOFolder.RequestDTOs.ProductSizeDTOs;
+using ProductMicroservice.Business.DTOFolder.RequestDTOs.ProductSizeRegionDTos;
 using ProductMicroservice.Business.DTOFolder.RequestDTOs.ProductVariantDTOs;
 using ProductMicroservice.Entities.Entities;
 
@@ -30,6 +31,9 @@ namespace ProductMicroservice.Business.DTOFolder.AutoMapperProfile
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()))
                 .ForMember(dest => dest.IsActive, opt => opt.MapFrom(_ => true));
             CreateMap<AddProductSizeDTO, ProductSizeDTO>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()))
+                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(_ => true));
+            CreateMap<AddProductSizeRegionDTO, ProductVariantSizeRegionDTO>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()))
                 .ForMember(dest => dest.IsActive, opt => opt.MapFrom(_ => true));
             #endregion

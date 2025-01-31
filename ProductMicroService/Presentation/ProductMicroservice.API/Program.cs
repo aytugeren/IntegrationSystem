@@ -3,6 +3,7 @@ using Microsoft.OpenApi.Models;
 using ProductMicroservice.Business.DTOFolder.AutoMapperProfile;
 using ProductMicroservice.Business.PictureServiceFolder;
 using ProductMicroservice.Business.ProductServiceFolder;
+using ProductMicroservice.Business.ProductSizeRegionServiceFolder;
 using ProductMicroservice.Business.ProductSizeServiceFolder;
 using ProductMicroservice.Business.ProductVariantServiceFolder;
 using ProductMicroservice.Data;
@@ -32,6 +33,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductVariantService, ProductVariantService>();
 builder.Services.AddScoped<IPictureService, PictureService>();
 builder.Services.AddScoped<IProductSizeService, ProductSizeService>();
+builder.Services.AddScoped<IProductSizeRegionService, ProductSizeRegionService>();
 builder.Services.AddDbContext<ProductContext>(options =>
 	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
