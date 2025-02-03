@@ -5,6 +5,7 @@ using ProductMicroservice.Business.PictureServiceFolder;
 using ProductMicroservice.Business.ProductServiceFolder;
 using ProductMicroservice.Business.ProductSizeRegionServiceFolder;
 using ProductMicroservice.Business.ProductSizeServiceFolder;
+using ProductMicroservice.Business.ProductVariantPictureServiceFolder;
 using ProductMicroservice.Business.ProductVariantServiceFolder;
 using ProductMicroservice.Data;
 using ProductMicroservice.Data.Repositories;
@@ -34,6 +35,7 @@ builder.Services.AddScoped<IProductVariantService, ProductVariantService>();
 builder.Services.AddScoped<IPictureService, PictureService>();
 builder.Services.AddScoped<IProductSizeService, ProductSizeService>();
 builder.Services.AddScoped<IProductSizeRegionService, ProductSizeRegionService>();
+builder.Services.AddScoped<IProductVariantPictureService, ProductVariantPictureService>();
 builder.Services.AddDbContext<ProductContext>(options =>
 	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 

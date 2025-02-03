@@ -74,6 +74,24 @@ namespace ProductMicroservice.Data.Repositories
             }
         }
 
+        public async Task<bool> DeleteWithModelAsync(T entity)
+        {
+            try
+            {
+                if (entity != null)
+                {
+                    _dbSet.Remove(entity);
+                    await _context.SaveChangesAsync();
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public async Task<List<T>> Query(Expression<Func<T, bool>> predicate)
         {
             return await _dbSet.Where(predicate).ToListAsync();

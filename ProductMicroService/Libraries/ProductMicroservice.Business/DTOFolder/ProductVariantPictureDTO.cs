@@ -1,6 +1,6 @@
 ﻿namespace ProductMicroservice.Business.DTOFolder
 {
-    public class ProductVariantPictureDTO : BaseEntityDTO
+    public class ProductVariantPictureDTO
     {
         public Guid ProductVariantId { get; set; }
 
