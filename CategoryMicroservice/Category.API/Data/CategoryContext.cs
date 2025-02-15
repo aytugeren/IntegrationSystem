@@ -9,7 +9,7 @@ namespace Category.API.Data
             var client = new MongoClient(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
             var database = client.GetDatabase(configuration.GetValue<string>("DatabaseSettings:DatabaseName"));
 
-            Categories = database.GetCollection<Entities.Category>(configuration.GetValue<string>("DatabaseSettings.CollectionName"));
+            Categories = database.GetCollection<Entities.Category>(configuration.GetValue<string>("DatabaseSettings:CollectionName"));
         }
 
         public IMongoCollection<Entities.Category> Categories { get; }
