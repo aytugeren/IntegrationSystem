@@ -64,6 +64,7 @@ namespace ProductMicroservice.Business.ProductServiceFolder
             if (product != null)
             {
                 product.ProductName = productDTO.ProductName;
+                product.CategoryId = productDTO.CategoryId;
                 product.ProductMainCode = productDTO.ProductMainCode;
                 product.BrandId = productDTO.BrandId;
                 product.VatRate = productDTO.VatRate;

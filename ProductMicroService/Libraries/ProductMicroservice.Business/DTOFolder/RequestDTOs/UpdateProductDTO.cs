@@ -8,7 +8,7 @@
 
         public Guid BrandId { get; set; }
 
-        public Guid CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         public decimal VatRate { get; set; }
 
