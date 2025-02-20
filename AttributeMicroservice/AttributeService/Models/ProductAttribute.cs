@@ -10,7 +10,7 @@
 
         public Attribute Attribute{ get; set; }
 
-        public Guid AttributeValueId { get; set; }
+        public Guid? AttributeValueId { get; set; }
 
         public AttributeValue AttributeValue { get; set; }
 
