@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Category.API", "CategoryMic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AttributeMicroservice", "AttributeMicroservice", "{DC311660-D7F5-4018-9E8A-B245C9B5ED20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributeService", "AttributeMicroservice\AttributeService\AttributeService.csproj", "{59B08B5E-1907-4DC1-AC2F-774F31752B9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttributeService", "AttributeMicroservice\AttributeService\AttributeService.csproj", "{59B08B5E-1907-4DC1-AC2F-774F31752B9B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AC1CEC54-BAC9-4AD5-B764-D42E27F93084}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{59B08B5E-1907-4DC1-AC2F-774F31752B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59B08B5E-1907-4DC1-AC2F-774F31752B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59B08B5E-1907-4DC1-AC2F-774F31752B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1CEC54-BAC9-4AD5-B764-D42E27F93084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1CEC54-BAC9-4AD5-B764-D42E27F93084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1CEC54-BAC9-4AD5-B764-D42E27F93084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1CEC54-BAC9-4AD5-B764-D42E27F93084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
