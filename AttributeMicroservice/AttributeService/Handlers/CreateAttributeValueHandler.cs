@@ -10,27 +10,37 @@ namespace AttributeService.Handlers
     {
         private readonly AttributeDbContext _context;
         private readonly IDistributedCache _cache;
+        private readonly ILogger<CreateAttributeValueHandler> _logger;
 
-        public CreateAttributeValueHandler(AttributeDbContext context, IDistributedCache cache)
+        public CreateAttributeValueHandler(AttributeDbContext context, IDistributedCache cache, ILogger<CreateAttributeValueHandler> logger)
         {
             _context = context;
             _cache = cache;
+            _logger = logger;
         }
 
         public async Task<Guid> Handle(CreateAttributeValueCommand request, CancellationToken cancellationToken)
         {
-            var attributeValue = new AttributeValue
+            try
             {
-                AttributeId = request.AttributeId,
-                Value = request.Value
-            };
+                var attributeValue = new AttributeValue
+                {
+                    AttributeId = request.AttributeId,
+                    Value = request.Value
+                };
 
-            _context.AttributeValues.Add(attributeValue);
-            await _context.SaveChangesAsync();
+                _context.AttributeValues.Add(attributeValue);
+                await _context.SaveChangesAsync();
 
-            await _cache.RemoveAsync("attributeValues");
+                await _cache.RemoveAsync("attributeValues");
 
-            return attributeValue.Id;
+                return attributeValue.Id;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An issue was encountered while creating the attributeValue.");
+                return Guid.Empty;
+            }
         }
     }
 }

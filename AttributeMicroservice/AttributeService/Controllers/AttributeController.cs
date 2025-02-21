@@ -10,10 +10,12 @@ namespace AttributeService.Controllers
     public class AttributeController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger<AttributeController> _logger;
 
-        public AttributeController(IMediator mediator)
+        public AttributeController(IMediator mediator, ILogger<AttributeController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet("GetAllAttributes", Name ="GetAllAttributes")]
@@ -27,7 +29,10 @@ namespace AttributeService.Controllers
         public async Task<IActionResult> CreateAttribute([FromBody] CreateAttributeCommand command)
         {
             var id = await _mediator.Send(command);
+            
+            _logger.LogInformation("New Attribute is created!");
             return CreatedAtRoute("GetAllAttributes", null);
+
         }
 
         [HttpPut("UpdateAttribute")]

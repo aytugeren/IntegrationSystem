@@ -3,6 +3,7 @@ using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Serilog.Sinks.Elasticsearch;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,16 +20,17 @@ builder.Services.AddStackExchangeRedisCache(options =>
     options.Configuration = builder.Configuration["Redis:Host"];
 });
 
-builder.Services.AddMassTransit(x =>
-{
-    x.UsingRabbitMq((context, cfg) =>
-    {
-        cfg.Host(builder.Configuration["RabbitMQ:Host"]);
-    });
-});
-
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .Enrich.WithMachineName()
+    .Enrich.WithThreadId()
+    .WriteTo.Console()
+    .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://localhost:9200"))
+    {
+        AutoRegisterTemplate = true,
+        IndexFormat = "attribute-service-logs-{0:yyyy.MM}"
+    })
     .CreateLogger();
 
 builder.Services.AddControllers();

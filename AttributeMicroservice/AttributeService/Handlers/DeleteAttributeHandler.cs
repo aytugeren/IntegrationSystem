@@ -9,25 +9,35 @@ namespace AttributeService.Handlers
     {
         private readonly AttributeDbContext _context;
         private readonly IDistributedCache _cache;
+        private readonly ILogger<DeleteAttributeHandler> _logger;
 
-        public DeleteAttributeHandler(AttributeDbContext context, IDistributedCache cache)
+        public DeleteAttributeHandler(AttributeDbContext context, IDistributedCache cache, ILogger<DeleteAttributeHandler> logger)
         {
             _context = context;
             _cache = cache;
+            _logger = logger;
         }
 
         public async Task<bool> Handle(DeleteAttributeCommand request, CancellationToken cancellationToken)
         {
-            var attribute = await _context.Attributes.FindAsync(request.Id, cancellationToken);
+            try
+            {
+                var attribute = await _context.Attributes.FindAsync(request.Id, cancellationToken);
 
-            if (attribute == null) return false;
+                if (attribute == null) return false;
 
-            _context.Attributes.Remove(attribute);
-            await _context.SaveChangesAsync();
+                _context.Attributes.Remove(attribute);
+                await _context.SaveChangesAsync();
 
-            _cache.Remove("all_attributes");
+                _cache.Remove("all_attributes");
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An issue was encountered while deleting the attribute.");
+                return false;
+            }
         }
     }
 }

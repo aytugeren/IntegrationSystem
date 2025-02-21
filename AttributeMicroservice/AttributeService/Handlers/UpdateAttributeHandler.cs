@@ -9,28 +9,38 @@ namespace AttributeService.Handlers
     {
         private readonly AttributeDbContext _context;
         private readonly IDistributedCache _cache;
+        private readonly ILogger<UpdateAttributeHandler> _logger;
 
-        public UpdateAttributeHandler(AttributeDbContext context, IDistributedCache cache)
+        public UpdateAttributeHandler(AttributeDbContext context, IDistributedCache cache, ILogger<UpdateAttributeHandler> logger)
         {
             _context = context;
             _cache = cache;
+            _logger = logger;
         }
 
         public async Task<bool> Handle(UpdateAttributeCommand request, CancellationToken cancellationToken)
         {
-            var attribute = await _context.Attributes.FindAsync(request.Id);
+            try
+            {
+                var attribute = await _context.Attributes.FindAsync(request.Id);
 
-            if (attribute == null) return false;
+                if (attribute == null) return false;
 
-            attribute.Name = request.Name;
+                attribute.Name = request.Name;
 
-            _context.Attributes.Update(attribute);
-            await _context.SaveChangesAsync();
+                _context.Attributes.Update(attribute);
+                await _context.SaveChangesAsync();
 
 
-            await _cache.RemoveAsync("all_attributes");
+                await _cache.RemoveAsync("all_attributes");
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An issue was encountered while updating the attribute.");
+                return false;
+            }
         }
     }
 }

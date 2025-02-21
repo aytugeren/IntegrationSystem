@@ -11,35 +11,45 @@ namespace AttributeService.Handlers
     {
         private readonly AttributeDbContext _context;
         private readonly IDistributedCache _cache;
+        private readonly ILogger<GetAllAttributesHandler> _logger;
 
-        public GetAllAttributesHandler(AttributeDbContext context, IDistributedCache cache)
+        public GetAllAttributesHandler(AttributeDbContext context, IDistributedCache cache, ILogger<GetAllAttributesHandler> logger)
         {
             _context = context;
             _cache = cache;
+            _logger = logger;
         }
 
         public async Task<List<Models.Attribute>> Handle(GetAllAttributesQuery request, CancellationToken cancellationToken)
         {
-            string cacheKey = "all_attributes";
-            var cachedAttributes = await _cache.GetStringAsync(cacheKey);
-
-            if (!string.IsNullOrEmpty(cachedAttributes))
+            try
             {
-                return JsonSerializer.Deserialize<List<Models.Attribute>>(cachedAttributes);
-            }
+                string cacheKey = "all_attributes";
+                var cachedAttributes = await _cache.GetStringAsync(cacheKey);
 
-            var attributes = await _context.Attributes.ToListAsync(cancellationToken);
-
-            if (attributes.Any())
-            {
-                var serializedAttributes = JsonSerializer.Serialize(attributes);
-                await _cache.SetStringAsync(cacheKey, serializedAttributes, new DistributedCacheEntryOptions
+                if (!string.IsNullOrEmpty(cachedAttributes))
                 {
-                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30)  // 30 dakika cache
-                });
-            }
+                    return JsonSerializer.Deserialize<List<Models.Attribute>>(cachedAttributes);
+                }
 
-            return attributes;
+                var attributes = await _context.Attributes.ToListAsync(cancellationToken);
+
+                if (attributes.Any())
+                {
+                    var serializedAttributes = JsonSerializer.Serialize(attributes);
+                    await _cache.SetStringAsync(cacheKey, serializedAttributes, new DistributedCacheEntryOptions
+                    {
+                        AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30)  // 30 dakika cache
+                    });
+                }
+
+                return attributes;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An issue was encountered while getting the all attributes.");
+                return new List<Models.Attribute>();
+            }
         }
     }
 }

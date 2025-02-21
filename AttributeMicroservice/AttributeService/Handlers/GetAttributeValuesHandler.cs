@@ -12,37 +12,47 @@ namespace AttributeService.Handlers
     {
         private readonly AttributeDbContext _context;
         private readonly IDistributedCache _cache;
+        private readonly ILogger<GetAttributeValuesHandler> _logger;
 
-        public GetAttributeValuesHandler(AttributeDbContext context, IDistributedCache cache)
+        public GetAttributeValuesHandler(AttributeDbContext context, IDistributedCache cache, ILogger<GetAttributeValuesHandler> logger)
         {
             _context = context;
             _cache = cache;
+            _logger = logger;
         }
 
         public async Task<List<AttributeValue>> Handle(GetAttributeValuesQuery request, CancellationToken cancellationToken)
         {
-            string cacheKey = "attributeValues";
-            var cachedAttributes = await _cache.GetStringAsync(cacheKey);
-
-            if (!string.IsNullOrEmpty(cachedAttributes))
+            try
             {
-                return JsonSerializer.Deserialize<List<AttributeValue>>(cachedAttributes);
-            }
+                string cacheKey = "attributeValues";
+                var cachedAttributes = await _cache.GetStringAsync(cacheKey);
 
-            var attributeValues = await _context.AttributeValues.
-                Include(pa => pa.Attribute).
-                ToListAsync(cancellationToken);
-
-            if (attributeValues.Any())
-            {
-                var serializedAttributeValues = JsonSerializer.Serialize(attributeValues);
-                await _cache.SetStringAsync(cacheKey, serializedAttributeValues, new DistributedCacheEntryOptions
+                if (!string.IsNullOrEmpty(cachedAttributes))
                 {
-                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30)  // 30 dakika cache
-                });
-            }
+                    return JsonSerializer.Deserialize<List<AttributeValue>>(cachedAttributes);
+                }
 
-            return attributeValues;
+                var attributeValues = await _context.AttributeValues.
+                    Include(pa => pa.Attribute).
+                    ToListAsync(cancellationToken);
+
+                if (attributeValues.Any())
+                {
+                    var serializedAttributeValues = JsonSerializer.Serialize(attributeValues);
+                    await _cache.SetStringAsync(cacheKey, serializedAttributeValues, new DistributedCacheEntryOptions
+                    {
+                        AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30)  // 30 dakika cache
+                    });
+                }
+
+                return attributeValues;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"An issue was encountered while getting the attributeValues by AttributeId : {request.AttributeId}.");
+                return new List<AttributeValue>();
+            }
         }
     }
 }
