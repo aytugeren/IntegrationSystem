@@ -4,8 +4,17 @@ services:
   productdb:
     image: postgres
   
+  categorydb:
+    image: mongo
+  
   pgadmin:
     image: dpage/pgadmin4
+
+  portainer:
+    image: portainer/portainer-ce
+
+  mongoexpress:
+    image: mongo-express
 
   productmicroservice.api:
     image: ${DOCKER_REGISTRY-}productmicroserviceapi
@@ -13,10 +22,14 @@ services:
       context: .
       dockerfile: ProductMicroService/Presentation/ProductMicroservice.API/Dockerfile
 
-  portainer:
-    image: portainer/portainer-ce
+  category.api:
+    image: ${DOCKER_REGISTRY-}categoryapi
+    build:
+      context: .
+      dockerfile: CategoryMicroservice/Category.API/Dockerfile
 
 volumes:
   postgres-data:
   pgadmin_data:
   portainer_data:
+  mongo_data:

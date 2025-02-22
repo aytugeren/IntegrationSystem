@@ -5,7 +5,8 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "product.api": "StartDebugging",
-        "productmicroservice.api": "StartDebugging"
+        "productmicroservice.api": "StartDebugging",
+        "category.api": "StartDebugging"
       }
     }
   }

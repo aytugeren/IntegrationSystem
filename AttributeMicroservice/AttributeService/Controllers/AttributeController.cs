@@ -1,6 +1,7 @@
 ﻿using AttributeService.CQRS.Commands;
 using AttributeService.CQRS.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AttributeService.Controllers
@@ -11,7 +12,6 @@ namespace AttributeService.Controllers
     {
         private readonly IMediator _mediator;
         private readonly ILogger<AttributeController> _logger;
-
         public AttributeController(IMediator mediator, ILogger<AttributeController> logger)
         {
             _mediator = mediator;
@@ -32,7 +32,6 @@ namespace AttributeService.Controllers
             
             _logger.LogInformation("New Attribute is created!");
             return CreatedAtRoute("GetAllAttributes", null);
-
         }
 
         [HttpPut("UpdateAttribute")]
